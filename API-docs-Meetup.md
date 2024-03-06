@@ -1,8 +1,8 @@
-# `<name of application here>`
+# `Hangout IRL`
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![alt text](image.png)
 
 ## API Documentation
 
