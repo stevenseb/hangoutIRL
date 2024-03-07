@@ -458,7 +458,7 @@ Create and return a new image for a group specified by id.
 * Require proper authorization: Current User must be the organizer for the group
 * Request
   * Method: POST
-  * URL: /api/images/:groupId
+  * URL: /api/groupImages/:groupId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1117,7 +1117,7 @@ Create and return a new image for an event specified by id.
 * Require proper authorization: Current User must be an attendee, host, or co-host of the event
 * Request
   * Method: POST
-  * URL: /api/images/:eventId
+  * URL: /api/eventImages/:eventId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1451,7 +1451,7 @@ Change the status of a membership for a group specified by id.
     * Current User must already be the organizer
 * Request
   * Method: PUT
-  * URL: /api/groups/:groupId
+  * URL: /api/groups/:groupId/users
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1692,8 +1692,8 @@ Request attendance for an event specified by id.
 * Require Authentication: true
 * Require Authorization: Current User must be a member of the group
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: POST
+  * URL: /api/events/:eventId
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -1908,7 +1908,7 @@ Delete an existing image for a Group.
   of the Group
 * Request
   * Method: DELETE
-  * URL: /api/images/imageId
+  * URL: /api/groupImages/:imageId
   * Body: none
 
 * Successful Response
@@ -1944,7 +1944,7 @@ Delete an existing image for an Event.
   of the Group that the Event belongs to
 * Request
   * Method: DELETE
-  * URL: /api/images/:imageId
+  * URL: /api/eventImages/:imageId
   * Body: none
 
 * Successful Response
@@ -1977,8 +1977,8 @@ Return events filtered by query parameters.
 
 * Require Authentication: false
 * Request
-  * Method: ?
-  * URL: ?
+  * Method: GET
+  * URL: /api/events
   * Query Parameters
     * page: integer, minimum: 1, maximum: 10, default: 1
     * size: integer, minimum: 1, maximum: 20, default: 20
