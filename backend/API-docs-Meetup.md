@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/users/:userid
+  * URL: /api/session
   * Body: none
 
 * Successful Response when there is a logged in user
@@ -91,7 +91,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/users/login
+  * URL: /api/users/login <!-- Again after Authorize Me project, we will have a session router, so you would make a post to /api/session-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -157,7 +157,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/users/register
+  * URL: /api/users/register <!-- HTML server convention, this is an json/api server, we do not need to add the '/register' to the end of the url-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -284,7 +284,7 @@ Returns all the groups.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/:userId/hangouts
+  * URL: /api/groups/:userId 
   * Body: none
 
 * Successful Response
