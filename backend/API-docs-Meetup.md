@@ -668,7 +668,7 @@ Creates and returns a new venue for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /api/:hangoutId/venues
+  * URL: /api/:hangoutId/venues <!-- Should have "/venues" before the id because it would be in the venues router. Also should be venueId not hangoutId-->
   * Headers:
     * Content-Type: application/json
   * Body:
