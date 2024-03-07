@@ -50,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/:userid/users
+  * URL: /api/:userid/users  <!-- When we finish the Authorize Me project, our user authorization routes will be in a router called session. You will be able to get the current user through a session variable, this route will be /api/session -->
   * Body: none
 
 * Successful Response when there is a logged in user
@@ -91,7 +91,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/users/login
+  * URL: /api/users/login <!-- Again after Authorize Me project, we will have a session router, so you would make a post to /api/session-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -157,7 +157,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/users/register
+  * URL: /api/users/register <!-- HTML server convention, this is an json/api server, we do not need to add the '/register' to the end of the url-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -247,7 +247,7 @@ Returns all the groups.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/hangouts
+  * URL: /api/hangouts <!-- if you are planning to change the name of the table to Hangouts, you need to make sure you change the bodies in the api docs. The example response body shows that the table name is "Groups". Either change the url to "/groups" or change the bodies to "Hangouts"-->
   * Body: none
 
 * Successful Response
@@ -284,7 +284,7 @@ Returns all the groups.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/:userId/hangouts
+  * URL: /api/:userId/hangouts <!-- Same as the above route regarding the name. You should have a router before the /:userId since this route should be in the "users" router. Something like /users/:userId/hangouts. Alternatively you can put this in your hangouts route and access the current user logged in through the session variable, so you can make a route like "/hangouts/current" this would keep all your endpoints relating to hangouts in the hangouts router  -->
   * Body: none
 
 * Successful Response
@@ -321,7 +321,7 @@ Returns the details of a group specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/:hangoutId/hangouts
+  * URL: /api/:hangoutId/hangouts <!-- Again, we need to be adding the resource name before the ID "/hangouts/:hangoutId" would be more suitable because this endpoint would be in the hangouts router. You would not want all of your endpoints in just the api router, the api router would get bloated very fast.-->
   * Body: none
 
 * Successful Response
@@ -393,7 +393,7 @@ Creates and returns a new group.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /api/:hangoutName/hangouts
+  * URL: /api/:hangoutName/hangouts <!-- Needs to have the resource name before the Id "/hangouts/:hangoutId" -->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -458,7 +458,7 @@ Create and return a new image for a group specified by id.
 * Require proper authorization: Current User must be the organizer for the group
 * Request
   * Method: POST
-  * URL: /api/:hangoutId/hangouts/images
+  * URL: /api/:hangoutId/hangouts/images <!-- Should have resource name before Id "/hangouts/:hangoutId/images" because it should be in the hangouts router.-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -504,7 +504,7 @@ Updates and returns an existing group.
 * Require proper authorization: Group must belong to the current user
 * Request
   * Method: PUT
-  * URL: /api/:hangoutId/hangouts
+  * URL: /api/:hangoutId/hangouts <!-- Should be in the hangouts router "/hangouts/:hangoutId" -->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -581,7 +581,7 @@ Deletes an existing group.
 * Require proper authorization: Group must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /api/:hangoutId/hangouts
+  * URL: /api/:hangoutId/hangouts <!-- should be in hangouts router "/hangouts/:hangoutId"  -->
   * Body: none
 
 * Successful Response
@@ -619,7 +619,7 @@ Returns all venues for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: GET
-  * URL: /api/:hangoutId/venues
+  * URL: /api/:hangoutId/venues <!-- Should have resource name before the id "/venues". Also it is looking for specific information about a venue, so it should be venueId.-->
   * Headers:
     * Content-Type: application/json
   * Body: none
