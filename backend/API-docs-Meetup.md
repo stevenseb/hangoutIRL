@@ -1293,7 +1293,7 @@ Returns the members of a group specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/groups/:groupId/users
+  * URL: /api/groups/:groupId/members
   * Body: none
 
 * Successful Response: If you ARE the organizer or a co-host of the group. Shows
@@ -1383,7 +1383,7 @@ Request a new membership for a group specified by id.
 * Require Authentication: true
 * Request
   * Method: PUT
-  * URL: /api/groups/:groupId/users
+  * URL: /api/groups/:groupId/members
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -1451,7 +1451,7 @@ Change the status of a membership for a group specified by id.
     * Current User must already be the organizer
 * Request
   * Method: PUT
-  * URL: /api/groups/:groupId/users
+  * URL: /api/groups/:groupId/members
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1600,7 +1600,7 @@ Returns the attendees of an event specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/events/:eventId/attendees
+  * URL: /api/events/:eventId
   * Body: none
 
 * Successful Response: If you ARE the organizer of the group or a member of the
