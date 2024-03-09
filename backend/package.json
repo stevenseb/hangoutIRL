@@ -1,0 +1,50 @@
+{
+  "name": "sequelize-long-practice-1",
+  "version": "1.0.0",
+  "description": "Practice Sequelize Basics",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "NODE_ENV=test mocha --timeout 10000",
+    "test-with-json": "NODE_ENV=test mocha --reporter json --timeout 60000",
+    "sequelize": "sequelize",
+    "sequelize-cli": "sequelize-cli",
+    "start": "per-env",
+    "start:development": "nodemon ./bin/www",
+    "start:production": "node ./bin/www",
+    "build": "node psql-setup-script.js"
+  },
+  "keywords": [
+    "Express",
+    "Sequelize"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.5",
+    "better-sqlite3": "^8.2.0",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.3.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "express": "^4.18.3",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mocha": "^9.1.3",
+    "morgan": "^1.10.0",
+    "per-env": "^1.0.2",
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.1",
+    "sequelize-cli": "^6.6.2"
+  },
+  "devDependencies": {
+    "backend": "^0.0.0",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^5.1.0",
+    "nodemon": "^2.0.22",
+    "sqlite3": "^5.1.7"
+  }
+}
