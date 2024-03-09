@@ -14,13 +14,13 @@ const routes = require('./routes');
 
 
 
-app.use(routes); // Connect all the routes
+
 const app = express();
 // Express using json
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(routes); // Connect all the routes
 // Middleware
 // Security Middleware
 if (!isProduction) {
