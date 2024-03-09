@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![alt text](images/image.png)
+![alt text](image.png)
 
 ## API Documentation
 
@@ -91,7 +91,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/users/login <!-- Again after Authorize Me project, we will have a session router, so you would make a post to /api/session-->
+  * URL: /api/session <!-- Again after Authorize Me project, we will have a session router, so you would make a post to /api/session-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -157,7 +157,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /api/users/register <!-- HTML server convention, this is an json/api server, we do not need to add the '/register' to the end of the url-->
+  * URL: /api/users <!-- HTML server convention, this is an json/api server, we do not need to add the '/register' to the end of the url-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -284,7 +284,7 @@ Returns all the groups.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/groups/:userId 
+  * URL: /api/groups/currentUser <!-- If you are using userId, it should be in the user router "/api/users/:userId. If you want to keep this endpoint in the groups router you can do something like "/api/groups/currentUser"-->
   * Body: none
 
 * Successful Response
@@ -458,7 +458,7 @@ Create and return a new image for a group specified by id.
 * Require proper authorization: Current User must be the organizer for the group
 * Request
   * Method: POST
-  * URL: /api/groupImages/:groupId
+  * URL: /api/groups/:groupId/images/groupImages <!-- Since we are adding an image to a specific group, we should be in the groups router. Should be something like "/api/groups/:groupId/images"-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -619,7 +619,7 @@ Returns all venues for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: GET
-  * URL: /api/venues/:groupId
+  * URL: /api/groups/:groupId/venues <!-- If we are looking for a specific group's details we need to be in the group router. "/groups/:groupId/venues" We should not mismatch the router venue with a group id.-->
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -668,7 +668,7 @@ Creates and returns a new venue for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /api/venues/:groupId
+  * URL: /api/groups/:groupId/venues <!-- If we are creating a venue for a group, we need to be in the group router. "/groups/:groupId/venues" We should not mismatch the router venue with a group id.-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -877,7 +877,7 @@ Returns all the events of a group specified by its id
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/events/:groupId
+  * URL: /api/groups/:groupId/events <!-- If we are looking for a specific group's details we need to be in the group router. "/groups/:groupId/events" We should not mismatch the router event with a group id.-->
   * Body: none
 
 * Successful Response
@@ -952,7 +952,7 @@ Returns the details of an event specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/events/:eventId
+  * URL: /api/events/:eventId 
   * Body: none
 
 * Successful Response
@@ -1025,7 +1025,7 @@ Creates and returns a new event for a group specified by its id
   the group with a status of "co-host"
 * Request
   * Method: POST
-  * URL: /api/events/:groupId
+  * URL: /api/groups/:groupId/events <!-- If we are creating an event for a specific groups details we need to be in the group router. "/groups/:groupId/events" We should not mismatch the router event with a group id.-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1117,7 +1117,7 @@ Create and return a new image for an event specified by id.
 * Require proper authorization: Current User must be an attendee, host, or co-host of the event
 * Request
   * Method: POST
-  * URL: /api/eventImages/:eventId
+  * URL: /api/events/:eventId/images/eventImages <!-- We are creating an image tied to an event, it should be in the event router. "/api/events/:eventId/image"-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1382,7 +1382,7 @@ Request a new membership for a group specified by id.
 
 * Require Authentication: true
 * Request
-  * Method: PUT
+  * Method: POST <!-- Should be a POST method, they need to create the record in the join table, this should default the status to pending-->
   * URL: /api/groups/:groupId/members
   * Headers:
     * Content-Type: application/json
@@ -1600,7 +1600,7 @@ Returns the attendees of an event specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /api/events/:eventId
+  * URL: /api/events/:eventId/attendees <!-- We need to specify we are looking for the attendees to the event. /api/events/:eventId/attendees -->
   * Body: none
 
 * Successful Response: If you ARE the organizer of the group or a member of the
@@ -1693,7 +1693,7 @@ Request attendance for an event specified by id.
 * Require Authorization: Current User must be a member of the group
 * Request
   * Method: POST
-  * URL: /api/events/:eventId
+  * URL: /api/events/:eventId/attendees <!-- We should be specifying that we are posting a new record in the join table by adding "attendance" to the url, "/api/events/:eventId/attendance"-->
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -1757,7 +1757,7 @@ Change the status of an attendance for an event specified by id.
   have a membership to the group with the status of "co-host"
 * Request
   * Method: PUT
-  * URL: /api/events/:eventId
+  * URL: /api/events/:eventId/attendees <!-- Specify we are editing attendance. "/api/events/:eventId/attendance"-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1844,7 +1844,7 @@ Delete an attendance to an event specified by id.
   the user whose attendance is being deleted
 * Request
   * Method: DELETE
-  * URL: /api/events/:eventId
+  * URL: /api/events/:eventId/attendees <!-- Need to specify we are deleting an attendance to the event, this would be for deleting an event. should be "/api/events/:eventId/attendance/:userId"-->
   * Headers:
     * Content-Type: application/json
   * Body: none
@@ -1908,7 +1908,7 @@ Delete an existing image for a Group.
   of the Group
 * Request
   * Method: DELETE
-  * URL: /api/groupImages/:imageId
+  * URL: /api/groupImages/:imageId 
   * Body: none
 
 * Successful Response
@@ -1944,7 +1944,7 @@ Delete an existing image for an Event.
   of the Group that the Event belongs to
 * Request
   * Method: DELETE
-  * URL: /api/eventImages/:imageId
+  * URL: /api/eventImages/:imageId 
   * Body: none
 
 * Successful Response
