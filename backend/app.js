@@ -20,7 +20,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(routes); // Connect all the routes
+
 // Middleware
 // Security Middleware
 if (!isProduction) {
@@ -45,6 +45,10 @@ if (!isProduction) {
       }
     })
   );
+
+// MUST COME AFTER SECURITY MIDDLEWARE
+
+  app.use(routes); // Connect all the routes
 // Root route - DO NOT MODIFY
 app.get('/', (req, res) => {
     res.json({

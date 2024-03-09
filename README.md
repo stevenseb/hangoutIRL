@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 ## API Documentation
 
@@ -458,7 +458,7 @@ Create and return a new image for a group specified by id.
 * Require proper authorization: Current User must be the organizer for the group
 * Request
   * Method: POST
-  * URL: /api/groups/:groupId/images/groupImages <!-- Since we are adding an image to a specific group, we should be in the groups router. Should be something like "/api/groups/:groupId/images"-->
+  * URL: /api/groups/:groupId/images <!-- Since we are adding an image to a specific group, we should be in the groups router. Should be something like "/api/groups/:groupId/images"-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1117,7 +1117,7 @@ Create and return a new image for an event specified by id.
 * Require proper authorization: Current User must be an attendee, host, or co-host of the event
 * Request
   * Method: POST
-  * URL: /api/events/:eventId/images/eventImages <!-- We are creating an image tied to an event, it should be in the event router. "/api/events/:eventId/image"-->
+  * URL: /api/events/:eventId/images <!-- We are creating an image tied to an event, it should be in the event router. "/api/events/:eventId/image"-->
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1908,7 +1908,7 @@ Delete an existing image for a Group.
   of the Group
 * Request
   * Method: DELETE
-  * URL: /api/groupImages/:imageId 
+  * URL: /api/images/:imageId 
   * Body: none
 
 * Successful Response
@@ -1944,7 +1944,7 @@ Delete an existing image for an Event.
   of the Group that the Event belongs to
 * Request
   * Method: DELETE
-  * URL: /api/eventImages/:imageId 
+  * URL: /api/images/:imageId 
   * Body: none
 
 * Successful Response
