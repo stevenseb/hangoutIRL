@@ -13,9 +13,6 @@ const { ValidationError } = require('sequelize');
 const routes = require('./routes');
 
 
-
-
-
 const app = express();
 // Express using json
 app.use(morgan('dev'));
@@ -50,6 +47,7 @@ if (!isProduction) {
 // MUST COME AFTER SECURITY MIDDLEWARE
 
   app.use(routes); // Connect all the routes
+  
 // Root route - DO NOT MODIFY
 app.get('/', (req, res) => {
     res.json({
