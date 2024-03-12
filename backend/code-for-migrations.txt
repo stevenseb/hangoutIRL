@@ -1,0 +1,95 @@
+
+///Add the following code to each migration file that creates a new table:
+
+// EVERY create table migration file
+'use strict';
+
+// NEW: add this code to each create table migration file
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+// END of new code
+
+
+// add options object to up and down functions:
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('table-name', {
+        // ...
+    }, options);    // add options object here
+  },
+  down: async (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('table-name', options); // and here
+  }
+};
+
+// NEW: add this code to each alter table migration file above up function
+
+let options = {};
+options.tableName = '<TableName>'; // define your table name in options object
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
+
+
+//Next, in the alter table function (such as addColumn), replace the table name with the options object as the first argument in both the up and down functions.
+
+//For example:
+
+// EXAMPLE up and down function of an alter table migration
+
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    await queryInterface.addColumn(options, 'firstName', {  // options object
+      type: Sequelize.STRING(30),
+      allowNull: false,
+    })
+    await queryInterface.addColumn(options, 'lastName', {  // options object
+      type: Sequelize.STRING(30),
+      allowNull: false,
+    })
+  },
+
+  async down (queryInterface, Sequelize) {
+    await queryInterface.removeColumn(options, 'firstName') // options object
+    await queryInterface.removeColumn(options, 'lastName')  // options object
+  }
+};
+
+
+//You will need to make a similar adjustment to each seeder file as you just did in the migration files. In this case, you can add the table name to the options object, and just pass in the options object to each function, which defines both the schema name and the table name for the seed data.
+
+// EVERY SEEDER FILE
+'use strict';
+
+// NEW: add this code to each migration file
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+// END of new code
+
+
+// add options object to up and down functions:
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    options.tableName = '<TableName>';     // define table name in options object
+    return queryInterface.bulkInsert(options, [ // pass in options object here
+        // ...
+    ]);
+  },
+
+  down: (queryInterface, Sequelize) => {
+    options.tableName = '<TableName>'; // define table name in options object
+    return queryInterface.bulkDelete(options); // pass in options object here
+  }
+};
+
+
+// Note: If a seeder is using the Model.bulkCreate function for dynamic seeding, 
+// you do not need to define the schema in the seeder file or make any other adjustments. 
+// This is because the model that the Model.bulkCreate function is called on already has 
+// the schema defined.
