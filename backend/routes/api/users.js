@@ -8,6 +8,12 @@ const { User } = require('../../db/models');
 const router = express.Router();
 
 const validateSignup = [
+  check('firstName')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide your first name.'),
+    check('lastName')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide your last name.'),
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
