@@ -8,6 +8,9 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
+options.tableName = 'Users';
+options.validate = true;
+
 const demoUsers = [
   {
     firstName: 'Bob',
@@ -37,7 +40,7 @@ const demoUsers = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await User.bulkCreate(demoUsers, {validate: true});
+      await User.bulkCreate(demoUsers, options);
     } catch (err) {
       console.error(err);
       throw err;
