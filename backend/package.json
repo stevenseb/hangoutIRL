@@ -1,7 +1,7 @@
 {
-  "name": "sequelize-long-practice-1",
+  "name": "hangoutirl",
   "version": "1.0.0",
-  "description": "Practice Sequelize Basics",
+  "description": "hangout meeting app",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
