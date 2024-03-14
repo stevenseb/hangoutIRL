@@ -54,7 +54,7 @@ const demoGroups = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      return Group.bulkCreate(demoGroups, options);
+      await Group.bulkCreate(demoGroups, options);
     } catch (err) {
       console.error(err);
       throw err;
@@ -64,7 +64,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     options.tableName = 'Groups';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
+    await queryInterface.bulkDelete(options, {
       name: { [Op.in]: ['Jaguars', 'Beach Bicyclers', 'Motor City Moms', 'Chicago Realtors Group'] }
     }, {});
   },
