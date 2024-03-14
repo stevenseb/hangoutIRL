@@ -1,12 +1,14 @@
 'use strict';
 const { Group } = require('../models');
-const bcrypt = require("bcryptjs");
 const {Validator} = require('sequelize');
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
+
+options.tableName = 'Groups';
+options.validate = true;
 
 const demoGroups = [
   {
@@ -52,7 +54,7 @@ const demoGroups = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await Group.bulkCreate(demoGroups, {validate: true});
+      await Group.bulkCreate(demoGroups, options);
     } catch (err) {
       console.error(err);
       throw err;
