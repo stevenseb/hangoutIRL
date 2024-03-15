@@ -1,6 +1,7 @@
 'use strict';
 const {
-  Model
+  Model,
+  Validator
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Group extends Model {
@@ -10,8 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Group.belongsTo(models.User, { foreignKey: 'organizerId' });
-
+      Group.hasMany(models.Venue, { foreignKey: 'venueId' });
+      Group.hasMany(models.Event, { foreignKey: 'eventId' });
+      Group.hasMany(models.groupImage, { foreignKey: 'groupId'});
+      Group.hasOne(models.User, { foreignKey: 'organizerId'});
+      Group.belongsToMany(
+        models.User,
+        {
+          through: models.Member,
+          foreignKey: 'groupId',
+          otherKey: 'userId'
+        });
+      
     }
   }
   Group.init({
