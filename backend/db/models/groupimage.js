@@ -22,7 +22,12 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         }
       },
-    url: DataTypes.STRING,
+    url: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true,
+      }
+    },
     preview: DataTypes.BOOLEAN
   }, {
     sequelize,

@@ -39,13 +39,34 @@ module.exports = (sequelize, DataTypes) => {
           key: 'id',
         }
       },
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    type: DataTypes.STRING,
-    capacity: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE
+    name: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    type: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    capacity: { 
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    price: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    startDate: { 
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    endDate: { 
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Event',
