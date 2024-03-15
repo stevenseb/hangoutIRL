@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // association for group organizer
-      User.belongsToMany(models.Group, { foreignKey: organizerId });
+      User.hasMany(models.Group, { foreignKey: organizerId });
       // association for membership in group
       User.belongsToMany(
         models.Group,

@@ -15,8 +15,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Member.init({
-    userId: DataTypes.INTEGER,
-    groupId: DataTypes.INTEGER,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+        references: {
+          model: 'User',
+          key: 'id',
+        },
+    },
+    groupId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+        references: {
+          model: 'Group',
+          key: 'id',
+        }
+      },
     status: DataTypes.STRING
   }, {
     sequelize,

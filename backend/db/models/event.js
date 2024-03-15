@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Event.belongsTo(models.Venue, { foreignKey: 'venueId'});
       Event.belongsTo(models.Group, { foreignKey: 'groupId'});
-      Event.hasMany(models.Image, { foreignKey: 'eventId'});
+      Event.hasMany(models.EventImage, { foreignKey: 'eventId'});
       Event.belongsToMany(
-        models.Attendee,
+        models.User,
         {
           through: models.Attendee,
           foreignKey: 'eventId',
@@ -23,8 +23,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Event.init({
-    groupId: DataTypes.INTEGER,
-    venueId: DataTypes.INTEGER,
+    groupId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+        references: {
+          model: 'Group',
+          key: 'id',
+        }
+      },
+    venueId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+        references: {
+          model: 'Venue',
+          key: 'id',
+        }
+      },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     type: DataTypes.STRING,
