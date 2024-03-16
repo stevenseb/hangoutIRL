@@ -34,14 +34,16 @@ module.exports = (sequelize, DataTypes) => {
     name: { 
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    description: { 
-      type: DataTypes.STRING,
-      allowNull: false,
+      validate: {
+        min: 5,
+      }
     },
     type: { 
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isIn: [['Online', 'In person']],
+      }
     },
     capacity: { 
       type: DataTypes.INTEGER,
@@ -50,18 +52,38 @@ module.exports = (sequelize, DataTypes) => {
     price: { 
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        is: /^\d*(.\d{2})?$/,
+      },
+    },
+    description: { 
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     startDate: { 
       type: DataTypes.DATE,
       allowNull: false,
+      validate: {
+        isFuture(value) {
+          if (new Date(value) < new Date()) {
+            throw new Error("Start date must be in the future");
+          }
+        },
+      },
     },
     endDate: { 
       type: DataTypes.DATE,
       allowNull: false,
+      isLater(value) {
+        if (new Date(value) < new Date(startDate)) {
+          throw new Error("End date is less than start date");
+        }
+      },
     },
   }, {
     sequelize,
     modelName: 'Event',
+    tableName: 'Events',
   });
   return Event;
 };
