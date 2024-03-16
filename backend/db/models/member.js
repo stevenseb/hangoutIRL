@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isIn: [['member', 'co-host', 'pending']],
+      }
     },
   }, {
     sequelize,
