@@ -32,7 +32,7 @@ const demoGroups = [
   {
     organizerId: 3,
     name: 'Memphis Moms',
-    about: 'We are moms who live in Detroit and like to gather together for various activities. Come join us!',
+    about: 'We are moms who live in Memphis and like to gather together for various activities. Come join us!',
     type: 'In person',
     private: false,
     city: 'Memphis',
