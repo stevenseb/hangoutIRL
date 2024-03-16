@@ -34,19 +34,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1,255],
+        max: 60,
       }
     },
     about: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [10,1000],
+        min: 50,
       }
     },
     type: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      isIn: [['Online', 'In person']],
+    }
     },
     private: DataTypes.BOOLEAN,
     city: {
