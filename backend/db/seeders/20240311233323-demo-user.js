@@ -1,6 +1,6 @@
 'use strict';
 const { User } = require('../models');
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 const {Validator} = require('sequelize');
 
 let options = {};
@@ -20,7 +20,7 @@ const demoUsers = [
     hashedPassword: bcrypt.hashSync('greeneggs$521')
   },
   {
-    firstName: 'Michael',
+    firstName: 'Michelle',
     lastName: 'Jordan',
     email: 'Mike@airjordan.com',
     username: 'Airforce1',
@@ -32,7 +32,21 @@ const demoUsers = [
     email: 'bean@funny.com',
     username: 'FrankNbeans',
     hashedPassword: bcrypt.hashSync('crazy1in##490')
-  }
+  },
+  {
+    firstName: 'John',
+    lastName: 'Dough',
+    email: 'dough@gmail.com',
+    username: 'Jdough',
+    hashedPassword: bcrypt.hashSync('password123')
+  },
+  {
+    firstName: 'Dave',
+    lastName: 'Matthews',
+    email: 'music@band.com',
+    username: 'dmatt',
+    hashedPassword: bcrypt.hashSync('guessmypassword')
+  },
 ]
 
 
@@ -40,7 +54,7 @@ const demoUsers = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      return User.bulkCreate(demoUsers, options);
+      await User.bulkCreate(demoUsers, options);
     } catch (err) {
       console.error(err);
       throw err;
@@ -50,8 +64,8 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     options.tableName = 'Users';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
-      username: { [Op.in]: ['Breakfast', 'Airforce1', 'FrankNbeans'] }
+    await queryInterface.bulkDelete(options, {
+      username: { [Op.in]: ['Breakfast', 'Airforce1', 'FrankNbeans', 'jdough', 'dmatt'] }
     }, {});
   },
 };

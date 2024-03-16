@@ -1,5 +1,4 @@
 'use strict';
-
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -10,31 +9,27 @@ options.tableName = 'Groups';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Groups', {
+    await queryInterface.createTable('Venues', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      organizerId: {
+      groupId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      },
+           references: {
+            model: 'Groups',
+            key: 'id',
+            },
+          },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      about: {
+      address: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      type: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        },
-      private: {
-        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       city: {
@@ -44,21 +39,30 @@ module.exports = {
       state: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+          len: [2,2],
+        }
+      },
+      lat: {
+        type: Sequelize.FLOAT
+      },
+      lng: {
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       }
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Groups';
+    options.tableName = 'Venues';
     await queryInterface.dropTable(options);
   }
 };

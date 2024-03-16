@@ -1,6 +1,7 @@
 'use strict';
 const {
-  Model
+  Model,
+  Validator
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Group extends Model {
@@ -10,36 +11,45 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Group.belongsTo(models.User, { foreignKey: 'organizerId' });
-
+      Group.hasMany(models.Venue, { foreignKey: 'groupId' });
+      Group.hasMany(models.Event, { foreignKey: 'groupId' });
+      Group.hasMany(models.GroupImage, { foreignKey: 'groupId'});
+      Group.belongsTo(models.User, { foreignKey: 'organizerId'});
+      Group.belongsToMany(
+        models.User,
+        {
+          through: models.Member,
+          foreignKey: 'groupId',
+          otherKey: 'userId'
+        });
+      
     }
   }
   Group.init({
     organizerId: {
       type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'User',
-          key: 'id',
-        },
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1,255],
+        max: 60,
       }
     },
     about: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [10,1000],
+        min: 50,
       }
     },
     type: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      isIn: [['Online', 'In person']],
+    }
     },
     private: DataTypes.BOOLEAN,
     city: {
@@ -56,6 +66,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Group',
+    tableName: 'Groups',
   });
   return Group;
 };
