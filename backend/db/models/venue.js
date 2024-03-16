@@ -16,13 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Venue.init({
-    groupId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-        references: {
-          model: 'Group',
-          key: 'id',
-        },
+  groupId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -54,6 +50,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Venue',
+    tableName: 'Venues'
   });
   return Venue;
 };

@@ -9,6 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      eventId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+          references: {
+            model: 'Events',
+            key: 'id',
+          },
+        },
       url: {
         type: Sequelize.STRING,
         allowNull: false,

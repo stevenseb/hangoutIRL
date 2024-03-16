@@ -29,10 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     organizerId: {
       type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'User',
-          key: 'id',
-        },
     },
     name: {
       type: DataTypes.STRING,
@@ -67,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Group',
+    tableName: 'Groups',
   });
   return Group;
 };

@@ -18,18 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     eventId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-        references: {
-          model: 'Event',
-          key: 'id',
-        },
       },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-        references: {
-          model: 'User',
-          key: 'id',
-        },
     },
     status: {
       type: DataTypes.STRING,

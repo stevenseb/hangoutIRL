@@ -17,10 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     eventId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-        references: {
-          model: 'Event',
-          key: 'id',
-        },
       },
       url: {
         type: DataTypes.STRING,
