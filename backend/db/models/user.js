@@ -14,20 +14,20 @@ module.exports = (sequelize, DataTypes) => {
       // association for group organizer
       User.hasMany(models.Group, { foreignKey: 'organizerId' });
       // association for membership in group
-      User.belongsToMany(
-        models.Group,
-        {
-          through: models.Member,
-          foreignKey: 'userId',
-          otherKey: 'groupId'
-        });
-        User.belongsToMany(
-          models.Event,
-          {
-            through: models.Attendee,
-            foreignKey: 'userId',
-            otherKey: 'eventId'
-          });
+      // User.belongsToMany(
+      //   models.Group,
+      //   {
+      //     through: models.Member,
+      //     foreignKey: 'userId',
+      //     otherKey: 'groupId'
+      //   });
+      //   User.belongsToMany(
+      //     models.Event,
+      //     {
+      //       through: models.Attendee,
+      //       foreignKey: 'userId',
+      //       otherKey: 'eventId'
+      //     });
      
     }
   }
