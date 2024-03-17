@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
       //Event.belongsTo(models.Venue, { foreignKey: 'venueId'});
       //Event.belongsTo(models.Group, { foreignKey: 'groupId'});
       //Event.hasMany(models.EventImage, { foreignKey: 'eventId'});
-      Event.belongsToMany(
-        models.User,
-        {
-          through: models.Attendee,
-          foreignKey: 'eventId',
-          otherKey: 'userId'
-        });
+      // Event.belongsToMany(
+      //   models.User,
+      //   {
+      //     through: models.Attendee,
+      //     foreignKey: 'eventId',
+      //     otherKey: 'userId'
+      //   });
     }
   }
   Event.init({
