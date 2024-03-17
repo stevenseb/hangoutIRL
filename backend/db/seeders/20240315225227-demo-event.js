@@ -83,7 +83,7 @@ module.exports = {
     options.tableName = 'Events';
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ["Poker Game Followed By PGA Tournament Watch Party", 'Airforce1', 'FrankNbeans', 'jdough', 'dmatt'] }
+      name: { [Op.in]: ["Poker Game Followed By PGA Tournament Watch Party", "Beach Bicylclers First Meeting", "Walk on the Waterfront.", "Guest Speaker on Child Health", "Upcoming Real Estate Trends"] }
     }, {});
   },
 };
