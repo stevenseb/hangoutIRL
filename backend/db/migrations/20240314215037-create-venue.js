@@ -20,10 +20,10 @@ module.exports = {
       groupId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-           references: {
-            model: 'Groups',
-            key: 'id',
-            },
+          //  references: {
+          //   model: 'Groups',
+          //   key: 'id',
+          //   },
           },
       name: {
         type: Sequelize.STRING,
