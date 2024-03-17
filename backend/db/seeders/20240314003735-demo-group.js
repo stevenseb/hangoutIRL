@@ -1,6 +1,5 @@
 'use strict';
 const { Group } = require('../models');
-const {Validator} = require('sequelize');
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
