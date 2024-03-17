@@ -5,6 +5,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 options.tableName = 'Venues';
+options.validate = true;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
