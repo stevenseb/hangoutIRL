@@ -52,7 +52,7 @@ const demoAttendees = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await Attendee.bulkCreate(demoAttendees, options);
+      await Attendee.bulkCreate(demoAttendees, { validate: true });
     } catch (err) {
       console.error(err);
       throw err;

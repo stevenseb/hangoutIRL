@@ -72,7 +72,7 @@ const demoEvents = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await Event.bulkCreate(demoEvents, options);
+      await Event.bulkCreate(demoEvents, { validate: true });
     } catch (err) {
       console.error(err);
       throw err;
