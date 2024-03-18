@@ -52,7 +52,7 @@ const demoGroupImages = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await GroupImage.bulkCreate(demoGroupImages, options);
+      await GroupImage.bulkCreate(demoGroupImages, { validate: true });
     } catch (err) {
       console.error(err);
       throw err;

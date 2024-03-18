@@ -52,7 +52,7 @@ const demoEventImages = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await EventImage.bulkCreate(demoEventImages, options);
+      await EventImage.bulkCreate(demoEventImages, { validate: true });
     } catch (err) {
       console.error(err);
       throw err;

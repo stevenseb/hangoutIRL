@@ -62,7 +62,7 @@ const demoGroups = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await Group.bulkCreate(demoGroups, options);
+      await Group.bulkCreate(demoGroups, { validate: true });
     } catch (err) {
       console.error(err);
       throw err;

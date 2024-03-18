@@ -53,7 +53,7 @@ const demoUsers = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     try {
-      await User.bulkCreate(demoUsers, options);
+      await User.bulkCreate(demoUsers, { validate: true });
     } catch (err) {
       console.error(err);
       throw err;
