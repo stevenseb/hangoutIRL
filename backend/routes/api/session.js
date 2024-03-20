@@ -9,7 +9,7 @@ const { User } = require('../../db/models');
 const { validateLogin } = require('../../utils/validation');
 const router = express.Router();
 
-
+ 
 // LOG IN
 router.post(
   '/',
