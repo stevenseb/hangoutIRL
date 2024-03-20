@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
       Group.hasMany(models.Event, { foreignKey: 'groupId' });
       Group.hasMany(models.GroupImage, { foreignKey: 'groupId'});
       Group.belongsTo(models.User, { foreignKey: 'organizerId'});
-      // Group.belongsToMany(
-      //   models.User,
-      //   {
-      //     through: models.Member,
-      //     foreignKey: 'groupId',
-      //     otherKey: 'userId'
-      //   });
+      Group.belongsToMany(
+        models.User,
+        {
+          through: models.Member,
+          foreignKey: 'groupId',
+          otherKey: 'userId'
+        });
       
     }
   }
