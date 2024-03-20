@@ -11,10 +11,7 @@ const router = express.Router();
 
  
 // LOG IN
-router.post(
-  '/',
-  validateLogin,
-  async (req, res, next) => {
+router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
 
     const user = await User.unscoped().findOne({
