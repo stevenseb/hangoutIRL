@@ -62,5 +62,7 @@ const validateLogin = [
 ];
 
 module.exports = {
-  handleValidationErrors
+  handleValidationErrors,
+  validateLogin,
+  validateSignup
 };
