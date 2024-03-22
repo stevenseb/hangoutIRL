@@ -1,11 +1,11 @@
 'use strict';
 let options = {};
+options.tableName = 'Groups'; // define your table name in options object
+
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
-options.tableName = 'Groups';
-options.validate = true;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
