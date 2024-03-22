@@ -4,7 +4,6 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
-options.tableName = 'GroupImages';
 
 
 /** @type {import('sequelize-cli').Migration} */
@@ -47,7 +46,6 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = 'GroupImages'
-    await queryInterface.dropTable(options);
+    await queryInterface.dropTable('GroupImages', options);
   }
 };

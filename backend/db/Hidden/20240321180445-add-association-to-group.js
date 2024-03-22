@@ -10,7 +10,7 @@ options.validate = true;
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.changeColumn('Groups', 'organizerId', {
+    await queryInterface.changeColumn(options, 'organizerId', {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -23,8 +23,7 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    options.tableName = 'Groups';
-    await queryInterface.changeColumn('TableName', 'organizerId', options, {
+    await queryInterface.changeColumn(options, 'organizerId', {
         type: Sequelize.INTEGER,
         allowNull: false,
     });
