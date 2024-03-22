@@ -4,9 +4,6 @@ if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
-options.tableName = 'Attendees';
-options.validate = true;
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -50,7 +47,6 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Attendees';
-    await queryInterface.dropTable(options);
+    await queryInterface.dropTable('Attendees', options);
   }
 };
