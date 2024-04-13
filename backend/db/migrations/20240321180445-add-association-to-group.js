@@ -18,7 +18,7 @@ module.exports = {
           key: 'id',
         },  
       onDelete: 'CASCADE'
-    }, options);
+    });
   },
 
   async down (queryInterface, Sequelize) {
