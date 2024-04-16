@@ -18,7 +18,7 @@ router.post('/test', function(req, res) {
   });
 
 const { setTokenCookie } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
+const { User } = require('../../db/models/index.js');
 
 router.get('/set-token-cookie', async (_req, res) => {
     const user = await User.findOne({

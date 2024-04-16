@@ -9,7 +9,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const isProduction = environment === 'production';
-const { ValidationError } = require('sequelize');
+const { ValidationError } = require('sequelize'); 
 const routes = require('./routes');
 
 
